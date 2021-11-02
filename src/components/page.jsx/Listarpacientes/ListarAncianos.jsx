@@ -1,9 +1,76 @@
-import React from 'react'
+import React, {useEffect} from "react";
+import { Table, Container } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import {ListarAncianoAsincronico} from "../../../Redux/actiones/actionPacAnciano"
 
 export const ListarAncianos = () => {
+    const { pacienteA} = useSelector((store) => store.registrarAnciano);
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(ListarAncianoAsincronico())
+    }, [])
+   
     return (
         <div>
-            listar ancianos
+            <Container>
+      <h1 style={{ textAlign: "center", margin: "10px" }}>
+          Listar Pacientes Ancianos
+        </h1>
+        <hr style={{ border: "4px solid blue" }} />
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+             <th>Tipo de Consulta</th>
+              <th>Nombre</th>
+              <th># Historia</th>
+              <th># Documento</th>
+              <th>Edad</th>
+              <th>Prioridad</th>
+              <th>Riesgo</th>
+            </tr>
+          </thead>
+          <tbody>
+              {
+                pacienteA ?(
+                    pacienteA.map((viejo, index)=> (
+                      viejo.prioridad <5 ?
+                      (
+                        <tr key= {index}>
+                        <th>Medicina Integral</th>
+                        <td>{viejo.nombreCom}</td>
+                        <td>{viejo.historioNum}</td>
+                        <td>{viejo.documento}</td>
+                        <td>{viejo.edad}</td>
+                        <td>{viejo.prioridad}</td>
+                        <td>{viejo.riesgo}</td>
+                      </tr>
+                      )
+                      :
+                      (
+                        <tr key= {index}>
+                        <th>Urgencia</th>
+                        <td>{viejo.nombreCom}</td>
+                        <td>{viejo.historioNum}</td>
+                        <td>{viejo.documento}</td>
+                        <td>{viejo.edad}</td>
+                        <td>{viejo.prioridad}</td>
+                        <td>{viejo.riesgo}</td>
+                      </tr>
+                      )
+                     
+                          ))  
+                        
+                      )
+                      :
+                      (
+                          <h3 style={{textAlign: 'center', margin: '20px', color: 'blue'}}>No se cargan pacientes</h3>
+                      )
+                
+                }               
+          </tbody>
+        </Table>
+      </Container>
         </div>
     )
 }

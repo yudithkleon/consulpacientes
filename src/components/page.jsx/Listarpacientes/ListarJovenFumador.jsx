@@ -3,7 +3,7 @@ import { Table, Container } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { ListarJovenAsincronico } from "../../../Redux/actiones/actionPacJoven";
 
-export const ListarJovenes = () => {
+export const ListarJovenFumador = () => {
   const { pacienteJ } = useSelector((store) => store.registrarJoven);
 
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export const ListarJovenes = () => {
     <div>
       <Container>
         <h1 style={{ textAlign: "center", margin: "10px" }}>
-          Listar Pacientes Jovenes
+          Listar Jovenes Fumadores - Consulta Urgente
         </h1>
         <hr style={{ border: "4px solid blue" }} />
         <Table striped bordered hover>
@@ -33,7 +33,9 @@ export const ListarJovenes = () => {
           <tbody>
             {pacienteJ ? (
               pacienteJ.map((joven, index) =>
-                joven.prioridad < 5 ? (
+              (
+                joven.fumador =="Si" && joven.prioridad > 4 ?
+                 (
                   <tr key={index}>
                     <th>Medicina Integral</th>
                     <td>{joven.nombreCom}</td>
@@ -43,25 +45,28 @@ export const ListarJovenes = () => {
                     <td>{joven.prioridad}</td>
                     <td>{joven.riesgo}</td>
                   </tr>
-                ) : (
-                  <tr key={index}>
-                    <th>Urgencia</th>
-                    <td>{joven.nombreCom}</td>
-                    <td>{joven.historioNum}</td>
-                    <td>{joven.documento}</td>
-                    <td>{joven.edad}</td>
-                    <td>{joven.prioridad}</td>
-                    <td>{joven.riesgo}</td>
-                  </tr>
+                )
+                :
+                (
+                    <h3
+                    style={{ textAlign: "center", margin: "10px" }}
+                  >
+                    No Fumador y No Urgente
+                  </h3>
                 )
               )
-            ) : (
+            
+            )
+            )
+            :
+            (
               <h3
-                style={{ textAlign: "center", margin: "20px", color: "blue" }}
-              >
-                No se cargan pacientes
-              </h3>
-            )}
+              style={{ textAlign: "center", margin: "20px", color: "blue" }}
+            >
+              No exiten pacientes 
+            </h3>  
+            )
+            }
           </tbody>
         </Table>
       </Container>

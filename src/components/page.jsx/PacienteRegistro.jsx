@@ -35,10 +35,11 @@ export const PacienteRegistro = () => {
                   width: "350px",
                   height: "80px",
                   margin: "10px",
-                  background: "blue lighten-4",
-                  color: "white",
+                  background: "white",
+                  color: "black",
                   border: "1px solid black",
                   borderRadius: "25px",
+                  boxShadow: "4px 25px 60px blue",
                 }}
                 onClick={() => setNiño(true)}
               >
@@ -50,10 +51,11 @@ export const PacienteRegistro = () => {
                   width: "350px",
                   height: "80px",
                   margin: "10px",
-                  background: "blue lighten-4",
-                  color: "white",
+                  background: "white",
+                  color: "black",
                   border: "1px solid black",
                   borderRadius: "25px",
+                  boxShadow: "4px 25px 60px blue",
                 }}
                 onClick={() => setJoven(true)}
               >
@@ -65,10 +67,11 @@ export const PacienteRegistro = () => {
                   width: "350px",
                   height: "80px",
                   margin: "10px",
-                  background: "blue lighten-4",
-                  color: "white",
+                  background: "white",
+                  color: "black",
                   border: "1px solid black",
                   borderRadius: "25px",
+                  boxShadow: "4px 25px 60px blue",
                 }}
                 onClick={() => setAnciano(true)}
               >

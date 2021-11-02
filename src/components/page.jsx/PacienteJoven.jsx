@@ -178,7 +178,7 @@ export const PacienteJoven = () => {
               justifyContent: "center",
               color: "black",
               borderRadius: "25px",
-            }}
+            }}     type="button"
             onClick={()=>CalcularPrioridad(fumador, añosfumador)}
             >
             Calcular Prioridad
@@ -212,7 +212,7 @@ export const PacienteJoven = () => {
               justifyContent: "center",
               color: "black",
               borderRadius: "25px",
-            }}
+            }}     type="button"
             onClick={()=>CalcularRiesgo(edad, prioridad)}
             >
             Calcular Riesgo

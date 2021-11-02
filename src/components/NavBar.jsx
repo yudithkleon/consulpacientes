@@ -60,7 +60,7 @@ export const NavBar = () => {
                 >
 
                   <Link style={{ color: "violet", fontSize: "14px",    }}
-                  to="/listarNino"
+                  to="/listarTodas"
                    >
                     <img
                       style={{ width: "40px", margin: "3px",  marginLeft: '20px'  }}
@@ -76,7 +76,7 @@ export const NavBar = () => {
                 <Nav.Link
                    eventKey="link-4"
                 > <Link 
-                // to="/agendar" 
+                to="consultaA" 
                 style={{ color: "violet", fontSize: "14px", }}>
                   <img
                     style={{ width: "40px", margin: "3px",  marginLeft: '20px'  }}

@@ -154,7 +154,7 @@ export const PacienteNiño = () => {
         </div>
 
         <div className="form-group ">
-          <label htmlFor="estatura">Estatura en Mts usando 1,20cm : </label>
+          <label htmlFor="estatura">Estatura en Mts usando 1.20cm : </label>
           <input
             className="form-control"
             type="number"
@@ -189,6 +189,7 @@ export const PacienteNiño = () => {
               color: "black",
               borderRadius: "25px",
             }}
+            type="button"
             onClick={()=>CalcularPrioridad(edad, peso, estatura)}
             >
             Calcular Prioridad
@@ -224,6 +225,7 @@ export const PacienteNiño = () => {
               color: "black",
               borderRadius: "25px",
             }}
+            type="button"
             onClick={()=>CalcularRiesgo(edad, prioridad)}
             >
             Calcular Riesgo

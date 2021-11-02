@@ -150,7 +150,7 @@ export const PacienteAnciano = () => {
               justifyContent: "center",
               color: "black",
               borderRadius: "25px",
-            }}
+            }}     type="button"
             onClick={()=>CalcularPrioridad(edad, dieta)}
             >
             Calcular Prioridad
@@ -185,7 +185,7 @@ export const PacienteAnciano = () => {
               justifyContent: "center",
               color: "black",
               borderRadius: "25px",
-            }}
+            }}     type="button"
             onClick={()=>CalcularRiesgo(edad, prioridad)}
             >
             Calcular Riesgo
