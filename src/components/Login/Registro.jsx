@@ -8,6 +8,8 @@ import {
 import {useDispatch } from "react-redux";
 import swal from "sweetalert"
 
+
+
 export const Registro = () => {
 
   const dispatch = useDispatch();
@@ -23,6 +25,8 @@ const MostrarAlert1=()=>{
         })
   )
 }
+
+
 
   const [values, handleInputChange] = useForm({
     nombre: "",

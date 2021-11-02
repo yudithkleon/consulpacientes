@@ -131,7 +131,7 @@ export const PacienteRegistro = () => {
         onHide={() => setAnciano(false)}
       >
         <Modal.Header closeButton>
-          <h1 style={{textAlign:'center', color: 'blue'}}>Registro de Paciente Joven</h1>
+          <h1 style={{textAlign:'center', color: 'blue'}}>Registro de Paciente Anciano</h1>
         </Modal.Header>
 
         <Modal.Body>

@@ -13,6 +13,7 @@ export const pacAncianoAsincronico = (
     nombreCom,
     edad,
     dieta,
+    prioridad
   ) => {
     return (dispatch) => {
       const register = {
@@ -21,6 +22,7 @@ export const pacAncianoAsincronico = (
         nombreCom,
         edad,
         dieta,
+        prioridad
       };
       addDoc(collection(db, "AncianoCollection"), register)
         .then((resp) => {

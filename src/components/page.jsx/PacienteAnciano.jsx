@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button, Modal } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useForm } from "../../hooks/useForm";
@@ -8,7 +8,9 @@ import { pacAncianoAsincronico } from "../../Redux/actiones/actionPacAnciano";
 export const PacienteAnciano = () => {
     
     const dispatch = useDispatch();
-    
+
+    let setPrioridad=0;
+
     const [values, handleInputChange] = useForm({
         historioNum: "",
         documento: "",
@@ -16,8 +18,9 @@ export const PacienteAnciano = () => {
         edad: "",
         dieta: "",
         valor: "",
+        prioridad: "",
       });
-      let { historioNum, documento, nombreCom, edad, dieta, valor } =
+      let { historioNum, documento, nombreCom, edad, dieta, valor, prioridad } =
         values;
     
       const handleRegistro = (e) => {
@@ -29,7 +32,8 @@ export const PacienteAnciano = () => {
             nombreCom,
             edad,
             dieta,
-            valor
+            valor,
+            prioridad
           )
          
         );
@@ -46,6 +50,21 @@ export const PacienteAnciano = () => {
         )
       }
     
+      const CalcularPrioridad = (edad, dieta) => {
+
+        dieta=="Si" && edad > 60
+         ?
+        (setPrioridad = (edad/20) + 4)
+         :
+         (setPrioridad = (edad/20) + 3)
+                
+        return swal({
+          icon: "success",
+          title: 'La prioridad de este Paciente es de: ' + ' '+ setPrioridad,
+        });
+    
+       
+      }
     return (
       <Container>
           <form onSubmit={handleRegistro}>
@@ -107,7 +126,39 @@ export const PacienteAnciano = () => {
                 id="dieta"
               />
             </div>
-
+            <Row>
+          <Col>
+          <button
+            style={{
+              width: "250px",
+              height: "50px",
+              margin: "20px",
+              background: "blue lighten-4",
+              justifyContent: "center",
+              color: "black",
+              borderRadius: "25px",
+            }}
+            onClick={()=>CalcularPrioridad(edad, dieta)}
+            >
+            Calcular Prioridad
+          </button>
+          </Col>
+          <Col>
+          <div className="form-group ">
+            <label htmlFor="valor">Ingrese el Valor Calculado de Prioridad Aqui: </label>
+            <input
+              className="form-control"
+              type="number"
+              name="prioridad"
+              value={prioridad}
+              onChange={handleInputChange}
+              id="prioridad"
+            />
+          </div>
+          </Col>
+          
+          
+        </Row>
            
             <button
                   style={{

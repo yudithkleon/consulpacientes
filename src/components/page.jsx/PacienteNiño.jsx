@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Button, Modal } from "react-bootstrap";
+import React, { useEffect} from "react";
+import { Container,  Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useForm } from "../../hooks/useForm";
@@ -9,9 +9,8 @@ export const PacienteNiño = () => {
 
   const dispatch = useDispatch();
 
-  const [statePrioridad, setPrioridad] = useState(0)
+  let setPrioridad = 0;
 
-  
   const [values, handleInputChange] = useForm({
     historioNum: "",
     documento: "",
@@ -58,17 +57,24 @@ export const PacienteNiño = () => {
   };
 
  
+
   const CalcularPrioridad = (edad, peso, estatura) => {
 
-    if (edad <= 5) setPrioridad = peso - estatura + 3;
-    else if (edad > 5 && edad <= 12) setPrioridad = peso - estatura + 2;
-    else if (edad > 13 && edad <= 15) setPrioridad = peso - estatura + 1;
-    console.log("la prioridad es: ");
-    console.log(setPrioridad);
-
-    // return setPrioridad;
+    edad <= 5
+     ?
+    (setPrioridad = peso - estatura + 3)
+     :
+    edad > 5 && edad <= 12 ?
+            ( setPrioridad = peso - estatura + 2)
+        :
+            ( setPrioridad = peso - estatura + 1)
+            
+    return swal({
+      icon: "success",
+      title: 'La prioridad de este Paciente es de: ' + ' '+ setPrioridad,
+    });
+  
   };
-
  
   return (
     <Container>
@@ -155,30 +161,42 @@ export const PacienteNiño = () => {
             id="valor"
           />
         </div>
-
-        <button
-          style={{
-            width: "250px",
-            height: "50px",
-            margin: "20px",
-            background: "blue lighten-4",
-            justifyContent: "center",
-            color: "black",
-            borderRadius: "25px",
-          }}
-          onClick={()=>CalcularPrioridad(edad, peso, estatura)}
-          >
-          Calcular Prioridad
-        </button>
-        <h1>{statePrioridad}</h1>
-        <input
-          className="form-control m col-4 "
-          type="text"
-          name="prioridad"
-          value={prioridad}
-          onChange={handleInputChange}
-          id="prioridad"
-        />
+     
+        <Row>
+          <Col>
+          <button
+            style={{
+              width: "250px",
+              height: "50px",
+              margin: "20px",
+              background: "blue lighten-4",
+              justifyContent: "center",
+              color: "black",
+              borderRadius: "25px",
+            }}
+            onClick={()=>CalcularPrioridad(edad, peso, estatura)}
+            >
+            Calcular Prioridad
+          </button>
+          </Col>
+          <Col>
+          <div className="form-group ">
+            <label htmlFor="valor">Ingrese el Valor Calculado de Prioridad Aqui:</label>
+            <input
+              className="form-control"
+              type="number"
+              name="prioridad"
+              value={prioridad}
+              onChange={handleInputChange}
+              id="prioridad"
+            />
+          </div>
+          </Col>
+          
+          
+        </Row>
+      
+       
 
         <button
           style={{

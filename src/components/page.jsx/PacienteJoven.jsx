@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { useDispatch } from "react-redux";
 import swal from "sweetalert";
 import { useForm } from "../../hooks/useForm";
@@ -9,7 +9,7 @@ import { pacJovenAsincronico } from '../../Redux/actiones/actionPacJoven';
 export const PacienteJoven = () => {
 
     const dispatch = useDispatch();
-
+     let setPrioridad = 0;
     const [values, handleInputChange] = useForm({
         historioNum: "",
         documento: "",
@@ -18,8 +18,9 @@ export const PacienteJoven = () => {
         fumador: "",
         añosfumador: "",
         valor: "",
+        prioridad: "",
       });
-      let { historioNum, documento, nombreCom, edad, fumador, añosfumador, valor } =
+      let { historioNum, documento, nombreCom, edad, fumador, añosfumador, valor, prioridad } =
         values;
     
       const handleRegistro = (e) => {
@@ -32,13 +33,29 @@ export const PacienteJoven = () => {
             edad,
             fumador,
             añosfumador,
-            valor
+            valor,
+            prioridad,
           )
          
         );
         e.target.reset();
           };
-    
+
+          const CalcularPrioridad = (fumador, añosfumador) => {
+
+            fumador=="Si" && añosfumador> 0
+             ?
+            (setPrioridad = (añosfumador/4) + 2)
+             :
+             (setPrioridad = 2 )
+                    
+            return swal({
+              icon: "success",
+              title: 'La prioridad de este Paciente es de: ' + ' '+ setPrioridad,
+            });
+        
+           
+          }
       const MostrarAlert1=()=>{
         return(
             swal({
@@ -133,6 +150,39 @@ export const PacienteJoven = () => {
                 id="valor"
               />
             </div>
+            <Row>
+          <Col>
+          <button
+            style={{
+              width: "250px",
+              height: "50px",
+              margin: "20px",
+              background: "blue lighten-4",
+              justifyContent: "center",
+              color: "black",
+              borderRadius: "25px",
+            }}
+            onClick={()=>CalcularPrioridad(fumador, añosfumador)}
+            >
+            Calcular Prioridad
+          </button>
+          </Col>
+          <Col>
+          <div className="form-group ">
+            <label htmlFor="valor">Ingrese el Valor Calculado de Prioridad Aqui: </label>
+            <input
+              className="form-control"
+              type="number"
+              name="prioridad"
+              value={prioridad}
+              onChange={handleInputChange}
+              id="prioridad"
+            />
+          </div>
+          </Col>
+          
+          
+        </Row>
             <button
                   style={{
                     width: "350px",

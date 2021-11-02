@@ -14,7 +14,8 @@ export const pacJovenAsincronico = (
     edad,
    fumador,
    añosfumador,
-   valor
+   valor,
+   prioridad,
   ) => {
     return (dispatch) => {
       const register = {
@@ -25,6 +26,7 @@ export const pacJovenAsincronico = (
          fumador,
          añosfumador,
          valor,
+         prioridad,
       };
       addDoc(collection(db, "JovenCollection"), register)
         .then((resp) => {
