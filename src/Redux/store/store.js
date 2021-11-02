@@ -15,9 +15,10 @@ const composeEnhancers =
 const reducers = combineReducers ( {
   login: loginReducer,
   register: registerReducer,
-  registrarNino: pacienteNinoReducer,
+  pacienteNino: pacienteNinoReducer,
   registrarJoven: pacienteJovenReducer,
   registrarAnciano: pacienteAncianoReducer,
+ 
 })
 
 export const store = createStore(

@@ -9,7 +9,10 @@ import { pacJovenAsincronico } from '../../Redux/actiones/actionPacJoven';
 export const PacienteJoven = () => {
 
     const dispatch = useDispatch();
+
      let setPrioridad = 0;
+     let setRiesgo=0;
+
     const [values, handleInputChange] = useForm({
         historioNum: "",
         documento: "",
@@ -19,8 +22,9 @@ export const PacienteJoven = () => {
         añosfumador: "",
         valor: "",
         prioridad: "",
+        riesgo:"",
       });
-      let { historioNum, documento, nombreCom, edad, fumador, añosfumador, valor, prioridad } =
+      let { historioNum, documento, nombreCom, edad, fumador, añosfumador, valor, prioridad, riesgo } =
         values;
     
       const handleRegistro = (e) => {
@@ -35,6 +39,7 @@ export const PacienteJoven = () => {
             añosfumador,
             valor,
             prioridad,
+            riesgo,
           )
          
         );
@@ -56,6 +61,18 @@ export const PacienteJoven = () => {
         
            
           }
+
+          const CalcularRiesgo = (edad, prioridad) => {
+
+            setRiesgo=(edad*prioridad)/100
+          
+            return swal({
+              icon: "success",
+              title: 'La prioridad de este Paciente es de: ' + ' '+ setRiesgo,
+            });
+          
+          };
+          
       const MostrarAlert1=()=>{
         return(
             swal({
@@ -177,6 +194,40 @@ export const PacienteJoven = () => {
               value={prioridad}
               onChange={handleInputChange}
               id="prioridad"
+            />
+          </div>
+          </Col>
+          
+          
+        </Row>
+         
+        <Row>
+          <Col>
+          <button
+            style={{
+              width: "250px",
+              height: "50px",
+              margin: "20px",
+              background: "blue lighten-4",
+              justifyContent: "center",
+              color: "black",
+              borderRadius: "25px",
+            }}
+            onClick={()=>CalcularRiesgo(edad, prioridad)}
+            >
+            Calcular Riesgo
+          </button>
+          </Col>
+          <Col>
+          <div className="form-group ">
+            <label htmlFor="valor">Ingrese el Valor Calculado de Riesgo Aqui:</label>
+            <input
+              className="form-control"
+              type="number"
+              name="riesgo"
+              value={riesgo}
+              onChange={handleInputChange}
+              id="riesgo"
             />
           </div>
           </Col>

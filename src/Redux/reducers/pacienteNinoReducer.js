@@ -12,9 +12,11 @@ export const pacienteNinoReducer = (state =initialState, action) =>{
           
            pacienteN: [action.payload, state.pacienteN]
         }
-         
-       
-           
+        case typesNiño.listarNiño:
+            return{
+                pacienteN:[...action.payload]
+            }
+                  
         default:
            return state;
     }

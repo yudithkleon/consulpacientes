@@ -7,6 +7,7 @@ import {
 import Login from '../components/Login/Login';
 import { Registro } from '../components/Login/Registro';
 import { NavBar } from '../components/NavBar';
+import { ListarNiños } from '../components/page.jsx/Listarpacientes/ListarNiños';
 import { PacienteRegistro } from '../components/page.jsx/PacienteRegistro';
 import { Principal } from '../components/Principal';
 
@@ -20,6 +21,7 @@ export const DashBoardRouters = () => {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Registro} />
                 <Route exact path="/registerPaciente" component={PacienteRegistro} />
+                <Route exact path="/listarNino" component={ListarNiños}/>
             </Switch>
         </Router>
         </div>

@@ -60,7 +60,7 @@ export const NavBar = () => {
                 >
 
                   <Link style={{ color: "violet", fontSize: "14px",    }}
-                //    to="/personal"
+                  to="/listarNino"
                    >
                     <img
                       style={{ width: "40px", margin: "3px",  marginLeft: '20px'  }}

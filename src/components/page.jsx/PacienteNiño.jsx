@@ -10,6 +10,7 @@ export const PacienteNiño = () => {
   const dispatch = useDispatch();
 
   let setPrioridad = 0;
+  let setRiesgo=0;
 
   const [values, handleInputChange] = useForm({
     historioNum: "",
@@ -20,6 +21,7 @@ export const PacienteNiño = () => {
     estatura: "",
     valor: "",
     prioridad: "",
+    riesgo:"",
   });
   let {
     historioNum,
@@ -30,6 +32,7 @@ export const PacienteNiño = () => {
     estatura,
     valor,
     prioridad,
+    riesgo
   } = values;
 
   const handleRegistro = (e) => {
@@ -43,7 +46,8 @@ export const PacienteNiño = () => {
         peso,
         estatura,
         valor,
-        prioridad
+        prioridad,
+        riesgo
       )
     );
     e.target.reset();
@@ -76,6 +80,17 @@ export const PacienteNiño = () => {
   
   };
  
+  const CalcularRiesgo = (edad, prioridad) => {
+
+    setRiesgo=(edad*prioridad)/100
+  
+    return swal({
+      icon: "success",
+      title: 'La prioridad de este Paciente es de: ' + ' '+ setRiesgo,
+    });
+  
+  };
+  
   return (
     <Container>
       <form onSubmit={handleRegistro}>
@@ -197,6 +212,39 @@ export const PacienteNiño = () => {
         </Row>
       
        
+        <Row>
+          <Col>
+          <button
+            style={{
+              width: "250px",
+              height: "50px",
+              margin: "20px",
+              background: "blue lighten-4",
+              justifyContent: "center",
+              color: "black",
+              borderRadius: "25px",
+            }}
+            onClick={()=>CalcularRiesgo(edad, prioridad)}
+            >
+            Calcular Riesgo
+          </button>
+          </Col>
+          <Col>
+          <div className="form-group ">
+            <label htmlFor="valor">Ingrese el Valor Calculado de Riesgo Aqui:</label>
+            <input
+              className="form-control"
+              type="number"
+              name="riesgo"
+              value={riesgo}
+              onChange={handleInputChange}
+              id="riesgo"
+            />
+          </div>
+          </Col>
+          
+          
+        </Row>
 
         <button
           style={{

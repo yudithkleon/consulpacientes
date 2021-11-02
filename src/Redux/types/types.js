@@ -5,16 +5,19 @@ export const types={
  }
 
  export const typesNiño={
-    registrarNino: 'registrarNino'
+    registrarNino: 'registrarNino',
+    listarNiño: 'listarNiño'
  }
 
  export const typesJoven={
-    registrarJoven: 'registrarJoven'
+    registrarJoven: 'registrarJoven',
+    listarJoven: 'listarJoven'
  }
 
  export const typesAnciano={
-    registrarAnciano: 'registrarAnciano'
+    registrarAnciano: 'registrarAnciano',
+    listarAnciano: 'listarAnciano'
  }
  export const typesPrioridad={
-    
+
  }

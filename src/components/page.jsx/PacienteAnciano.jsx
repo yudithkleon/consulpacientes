@@ -10,6 +10,7 @@ export const PacienteAnciano = () => {
     const dispatch = useDispatch();
 
     let setPrioridad=0;
+    let setRiesgo=0;
 
     const [values, handleInputChange] = useForm({
         historioNum: "",
@@ -19,8 +20,9 @@ export const PacienteAnciano = () => {
         dieta: "",
         valor: "",
         prioridad: "",
+        riesgo: "",
       });
-      let { historioNum, documento, nombreCom, edad, dieta, valor, prioridad } =
+      let { historioNum, documento, nombreCom, edad, dieta, valor, prioridad, riesgo } =
         values;
     
       const handleRegistro = (e) => {
@@ -33,7 +35,8 @@ export const PacienteAnciano = () => {
             edad,
             dieta,
             valor,
-            prioridad
+            prioridad,
+            riesgo,
           )
          
         );
@@ -62,9 +65,19 @@ export const PacienteAnciano = () => {
           icon: "success",
           title: 'La prioridad de este Paciente es de: ' + ' '+ setPrioridad,
         });
-    
-       
       }
+
+      const CalcularRiesgo = (edad, prioridad) => {
+
+        setRiesgo=(((edad * prioridad) / 100) + 5,3)
+      
+        return swal({
+          icon: "success",
+          title: 'La prioridad de este Paciente es de: ' + ' '+ setRiesgo,
+        });
+      
+      };
+
     return (
       <Container>
           <form onSubmit={handleRegistro}>
@@ -160,6 +173,40 @@ export const PacienteAnciano = () => {
           
         </Row>
            
+             
+        <Row>
+          <Col>
+          <button
+            style={{
+              width: "250px",
+              height: "50px",
+              margin: "20px",
+              background: "blue lighten-4",
+              justifyContent: "center",
+              color: "black",
+              borderRadius: "25px",
+            }}
+            onClick={()=>CalcularRiesgo(edad, prioridad)}
+            >
+            Calcular Riesgo
+          </button>
+          </Col>
+          <Col>
+          <div className="form-group ">
+            <label htmlFor="valor">Ingrese el Valor Calculado de Riesgo Aqui:</label>
+            <input
+              className="form-control"
+              type="number"
+              name="riesgo"
+              value={riesgo}
+              onChange={handleInputChange}
+              id="riesgo"
+            />
+          </div>
+          </Col>
+          
+          
+        </Row>
             <button
                   style={{
                     width: "350px",

@@ -12,7 +12,10 @@ export const pacienteJovenReducer = (state =initialState, action) =>{
           
            pacienteJ: [action.payload, state.pacienteJ]
         }
-         
+        case typesJoven.listarJoven:
+            return {
+                pacienteJ: [...action.payload]
+            }
        
            
         default:

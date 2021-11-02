@@ -7,13 +7,34 @@ import {
 import { db } from "../../firebase/firebaseConfig";
 
 
+export const ListarAncianoAsincronico=()=>{
+  return async (dispatch)=>{
+    const datos = await getDocs(collection(db, "AncianoCollection"));
+    const porta = [];
+    datos.forEach((documento) => {
+      porta.push({ ...documento.data() });
+    });
+    dispatch(ListarAncianoSincronico(porta)); 
+  }
+}
+
+
+export const ListarAncianoSincronico= (pacienteA)=>{
+ return {
+   type: typesAnciano.listarAnciano,
+   payload: pacienteA,
+
+  }
+}
+
 export const pacAncianoAsincronico = (
     historioNum,
     documento,
     nombreCom,
     edad,
     dieta,
-    prioridad
+    prioridad,
+    riesgo
   ) => {
     return (dispatch) => {
       const register = {
@@ -22,7 +43,8 @@ export const pacAncianoAsincronico = (
         nombreCom,
         edad,
         dieta,
-        prioridad
+        prioridad,
+        riesgo
       };
       addDoc(collection(db, "AncianoCollection"), register)
         .then((resp) => {
