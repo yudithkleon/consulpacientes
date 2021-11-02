@@ -11,9 +11,7 @@ export const PacienteNiño = () => {
 
   const [statePrioridad, setPrioridad] = useState(0)
 
-  setPrioridad(edad, peso, estatura =>{
-
-  )}
+  
   const [values, handleInputChange] = useForm({
     historioNum: "",
     documento: "",
