@@ -4,6 +4,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
+import { Footer } from '../components/Footer';
 import Login from '../components/Login/Login';
 import { Registro } from '../components/Login/Registro';
 import { NavBar } from '../components/NavBar';
@@ -37,7 +38,8 @@ export const DashBoardRouters = () => {
                  <Route exact path="/listarTodas" component={ListarTodas}/>
                  <Route exact path="/consultaA" component={ConsultaAtender}/>
             </Switch>
-        </Router>
+      </Router>
+        <Footer/>
         </div>
     )
 }
